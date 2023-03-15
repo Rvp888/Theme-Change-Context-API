@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./Components/Main";
+import Main2 from "./Components/Main2";
+import PageNotFound from "./Components/PageNotFound";
+import { useState, createContext } from "react";
+
+export const themeContext = createContext();
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  const changeTheme = (value) => {
+    if(theme === "light") {
+      setTheme("dark");
+    }
+    else {
+      setTheme("light");
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <themeContext.Provider value={{theme, changeTheme}}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Main />}></Route>
+            <Route path="/main2" element={<Main2 />}></Route>
+            <Route path="*" element={<PageNotFound />}></Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </themeContext.Provider>
+    </>
   );
 }
 

@@ -1,0 +1,19 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:monospace;
+}
+
+.light-main {
+    background: linear-gradient(#94c9d2, white);
+    height: 100vh;
+}
+
+.dark-main {
+    background: linear-gradient(#232323, rgb(117, 115, 115));
+    height: 100vh;
+    color: white;
+}
